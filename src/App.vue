@@ -1,10 +1,8 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
+  <div id="app" :class="{ body_bule: $route.path === '/' }">
+    <top-frame />
     <router-view />
+    <foot-frame />
   </div>
 </template>
 
@@ -30,3 +28,11 @@
   }
 }
 </style>
+<script>
+import TopFrame from "./components/TopFrame";
+import FootFrame from "./components/FootFrame";
+
+export default {
+  components: { FootFrame, TopFrame }
+};
+</script>
