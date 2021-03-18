@@ -202,7 +202,7 @@
     }
 
     .boundary_right {
-
+        padding-bottom: 40px;
     }
 
     .boundary_right > div {
