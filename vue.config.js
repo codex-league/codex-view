@@ -16,7 +16,7 @@ module.exports = {
    * In most cases please use '/' !!!
    * Detail: https://cli.vuejs.org/config/#publicpath
    */
-  publicPath: "/",
+  publicPath: "/codex/",
   outputDir: "dist",
   assetsDir: "static",
   lintOnSave: false, // 关闭eslint
