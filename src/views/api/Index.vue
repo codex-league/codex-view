@@ -4,7 +4,7 @@
             <el-col :span="6" class="boundary_left">
                 <div class="preview_api">
                     <el-collapse v-model="activeName" accordion>
-                        <el-collapse-item v-for="(item, index) in apis" :key="index" :title="item.name" name="1">
+                        <el-collapse-item v-for="(item, index) in apis" :key="index" :title="item.name" :name="index">
                             <ul>
                                 <li v-for="(api,index) in item.apis" :key="index" @click="checkoutApi(api)">
                                     {{ api.summary }}
@@ -103,6 +103,8 @@
     },
     methods: {
       checkoutApi(api) {
+
+        console.log(api)
         this.activeApi = api;
       }
     }
@@ -137,6 +139,10 @@
         color: #68717F;
         cursor: pointer;
         padding-left: 5px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        width: 250px;
     }
 
     .preview_api ul li:hover {
