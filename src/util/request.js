@@ -25,7 +25,7 @@ service.interceptors.response.use(
   response => {
     const res = response.data;
 
-    if (res.code !== undefined && res.code !== "0000") {
+    if (res.code !== undefined && res.code !== 200) {
       Message({
         message: res.msg || res.message || "Error",
         type: "error"

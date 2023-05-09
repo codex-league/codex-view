@@ -23,54 +23,141 @@
                             <el-input v-model="protocol + '//' + host + peration.path" readonly>
                                 <template slot="prepend">{{ peration.method }}</template>
                             </el-input>
-                            <el-button type="success" @click="$message('功能暂未实现，Please wait.')">Copy</el-button>
-                            <el-button type="primary" @click="$message('功能暂未实现，Please wait.')">请 求</el-button>
+<!--                            <el-button type="success" @click="$message('功能暂未实现，Please wait.')">Copy</el-button>-->
                         </div>
                         <div v-if="peration.params.length" class="request_param">
-                            <span class="title">Request param</span>
-                            <table>
-                                <tr>
-                                    <th width="150px">字段 <span>(field name)</span></th>
-                                    <th>描述 <span>(describe)</span></th>
-                                    <th width="200px">类型 <span>(fileld type)</span></th>
-                                    <th width="150px">是否必填 <span>(required)</span></th>
-                                </tr>
-                                <tr v-for="(item, index) in peration.params" :key="index">
-                                    <td> {{ item.field }}</td>
-                                    <td> {{ item.describe }}</td>
-                                    <td>
-                                        <el-tag size="mini" type="info">{{ item.type }}</el-tag>
-                                    </td>
-                                    <td>
-                                        <el-tag v-if="item.required" size="mini" type="danger">必填</el-tag>
-                                        <el-tag v-if="!item.required" size="mini" type="success">选填</el-tag>
-                                    </td>
-                                </tr>
-                            </table>
+                          <span class="title">Request param - 请求参考</span>
+                          <el-table
+                              :data="peration.params"
+                              style="width: 100%"
+                              row-key="field"
+                              :tree-props="{children: 'child'}">
+                            <el-table-column
+                                prop="field"
+                                label="字段"
+                                width="200">
+                              <template slot="header">
+                                字段 <span>(field name)</span>
+                              </template>
+                            </el-table-column>
+                            <el-table-column
+                                prop="describe"
+                                label="描述"
+                                width="200">
+                              <template slot="header">
+                                描述 <span>(describe)</span>
+                              </template>
+                            </el-table-column>
+                            <el-table-column
+                                prop="type"
+                                label="类型">
+                              <template slot="header">
+                                类型 <span>(fileld type)</span>
+                              </template>
+                              <template slot-scope="scope">
+                                <el-tag size="mini" type="info">{{ scope.row.type}}</el-tag>
+                              </template>
+                            </el-table-column>
+                            <el-table-column
+                                prop="required"
+                                label="是否必填"
+                                width="150">
+                              <template slot="header">
+                                是否必填 <span>(required)</span>
+                              </template>
+                              <template slot-scope="scope">
+                                <el-tag v-if="scope.row.required" size="mini" type="danger">必填</el-tag>
+                                <el-tag v-if="!scope.row.required" size="mini" type="success">选填</el-tag>
+                              </template>
+                            </el-table-column>
+                          </el-table>
                         </div>
-                        <div v-if="peration.paramsBody" class="request_body">
-                            <span class="title">Request body</span>
-                            <table v-if="peration.paramsBody.fields">
-                                <tr>
-                                    <th width="150px">字段 <span>(field name)</span></th>
-                                    <th>描述 <span>(describe)</span></th>
-                                    <th width="200px">类型 <span>(fileld type)</span></th>
-                                    <th width="150px">是否必填 <span>(required)</span></th>
-                                </tr>
 
-                                <tr v-for="(item, index) in peration.paramsBody.fields" :key="index">
-                                    <td> {{ item.field }}</td>
-                                    <td> {{ item.describe }}</td>
-                                    <td>
-                                        <el-tag size="mini" type="info">{{ item.type }}</el-tag>
-                                    </td>
-                                    <td>
-                                        <el-tag v-if="item.required" size="mini" type="danger">必填</el-tag>
-                                        <el-tag v-if="!item.required" size="mini" type="success">选填</el-tag>
-                                    </td>
-                                </tr>
-                            </table>
+                        <div v-if="peration.paramsBody" class="request_body">
+                          <span class="title">Request body - 请求参考</span>
+                          <el-table
+                              :data="peration.paramsBody"
+                              style="width: 100%"
+                              row-key="field"
+                              :tree-props="{children: 'child'}">
+                            <el-table-column
+                                prop="field"
+                                label="字段"
+                                width="200">
+                              <template slot="header">
+                                字段 <span>(field name)</span>
+                              </template>
+                            </el-table-column>
+                            <el-table-column
+                              prop="describe"
+                              label="描述"
+                              width="200">
+                              <template slot="header">
+                                描述 <span>(describe)</span>
+                              </template>
+                            </el-table-column>
+                            <el-table-column
+                                prop="type"
+                                label="类型">
+                              <template slot="header">
+                                类型 <span>(fileld type)</span>
+                              </template>
+                              <template slot-scope="scope">
+                                <el-tag size="mini" type="info">{{ scope.row.type}}</el-tag>
+                              </template>
+                            </el-table-column>
+                            <el-table-column
+                                prop="required"
+                                label="是否必填"
+                                width="150">
+                              <template slot="header">
+                                是否必填 <span>(required)</span>
+                              </template>
+                              <template slot-scope="scope">
+                                <el-tag v-if="scope.row.required" size="mini" type="danger">必填</el-tag>
+                                <el-tag v-if="!scope.row.required" size="mini" type="success">选填</el-tag>
+                              </template>
+                            </el-table-column>
+                          </el-table>
                         </div>
+
+                      <br>
+
+                      <div v-if="peration.responseBody" class="response_body">
+                        <span class="title">Response body - 响应参考</span>
+                        <el-table
+                            :data="peration.responseBody"
+                            style="width: 100%"
+                            row-key="field"
+                            :tree-props="{children: 'child'}">
+                          <el-table-column
+                              prop="field"
+                              label="字段"
+                              width="200">
+                            <template slot="header">
+                              字段 <span>(field name)</span>
+                            </template>
+                          </el-table-column>
+                          <el-table-column
+                              prop="describe"
+                              label="描述"
+                              width="200">
+                            <template slot="header">
+                              描述 <span>(describe)</span>
+                            </template>
+                          </el-table-column>
+                          <el-table-column
+                              prop="type"
+                              label="类型">
+                            <template slot="header">
+                              类型 <span>(fileld type)</span>
+                            </template>
+                            <template slot-scope="scope">
+                              <el-tag size="mini" type="info">{{ scope.row.type}}</el-tag>
+                            </template>
+                          </el-table-column>
+                        </el-table>
+                      </div>
                     </div>
                 </div>
             </el-col>
@@ -190,6 +277,7 @@
         padding: 5px;
     }
 
+    .response_body > .title,
     .request_body > .title,
     .request_param > .title {
         font-size: 16px;
