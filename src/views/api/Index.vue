@@ -66,8 +66,8 @@
                                 是否必填 <span>(required)</span>
                               </template>
                               <template slot-scope="scope">
-                                <el-tag v-if="scope.row.required" size="mini" type="danger">必填</el-tag>
-                                <el-tag v-if="!scope.row.required" size="mini" type="success">选填</el-tag>
+                                <el-tag v-if="scope.row.required&&!scope.row.child" size="mini" type="danger">必填</el-tag>
+                                <el-tag v-if="!scope.row.required&&!scope.row.child" size="mini" type="success">选填</el-tag>
                               </template>
                             </el-table-column>
                           </el-table>
@@ -76,7 +76,7 @@
                         <div v-if="peration.paramsBody" class="request_body">
                           <span class="title">Request body - 请求参考</span>
                           <el-table
-                              :data="peration.paramsBody"
+                              :data="peration.paramsBody.fields"
                               style="width: 100%"
                               row-key="field"
                               :tree-props="{children: 'child'}">
@@ -114,8 +114,8 @@
                                 是否必填 <span>(required)</span>
                               </template>
                               <template slot-scope="scope">
-                                <el-tag v-if="scope.row.required" size="mini" type="danger">必填</el-tag>
-                                <el-tag v-if="!scope.row.required" size="mini" type="success">选填</el-tag>
+                                <el-tag v-if="scope.row.required&&!scope.row.child" size="mini" type="danger">必填</el-tag>
+                                <el-tag v-if="!scope.row.required&&!scope.row.child" size="mini" type="success">选填</el-tag>
                               </template>
                             </el-table-column>
                           </el-table>
