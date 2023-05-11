@@ -30,7 +30,7 @@
                           <el-table
                               :data="peration.params"
                               style="width: 100%"
-                              row-key="field"
+                              row-key="uuid"
                               :tree-props="{children: 'child'}">
                             <el-table-column
                                 prop="field"
@@ -78,7 +78,7 @@
                           <el-table
                               :data="peration.paramsBody.fields"
                               style="width: 100%"
-                              row-key="field"
+                              row-key="uuid"
                               :tree-props="{children: 'child'}">
                             <el-table-column
                                 prop="field"
@@ -128,7 +128,7 @@
                         <el-table
                             :data="peration.responseBody"
                             style="width: 100%"
-                            row-key="field"
+                            row-key="uuid"
                             :tree-props="{children: 'child'}">
                           <el-table-column
                               prop="field"
